@@ -21,7 +21,7 @@ namespace Hotel.Api.Controllers
         /// <param name="id">Id of booking.</param>        
         [ProducesResponseType(typeof(Booking), 200)]
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromRoute] int id)
+        public async Task<IActionResult> GetAsync([FromRoute] int id)
         {
             return Ok(await _bookingApp.GetAsync(id));
         }
@@ -31,7 +31,7 @@ namespace Hotel.Api.Controllers
         /// </summary>             
         [ProducesResponseType(typeof(int), 201)]
         [HttpPost]
-        public async Task<IActionResult> Insert([FromBody] Booking booking)
+        public async Task<IActionResult> InsertAsync([FromBody] Booking booking)
         {
             return Created("/api/booking/{id}", await _bookingApp.InsertAsync(booking));
         }
@@ -41,7 +41,7 @@ namespace Hotel.Api.Controllers
         /// </summary>             
         [ProducesResponseType(typeof(void), 200)]
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] Booking booking)
+        public async Task<IActionResult> UpdateAsync([FromBody] Booking booking)
         {
             await _bookingApp.UpdateAsync(booking);
 
@@ -54,7 +54,7 @@ namespace Hotel.Api.Controllers
         /// <param name="id">Id of booking.</param>      
         [ProducesResponseType(typeof(void), 200)]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {
             await _bookingApp.DeleteAsync(id);
 

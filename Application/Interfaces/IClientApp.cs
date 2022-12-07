@@ -5,7 +5,7 @@ namespace Application.Interfaces
 {
     public interface IClientApp
     {
-        Task<int> Insert(Client client);
-        Task<Client> Login(LoginModel login);
+        Task<int> InsertAsync(Client client);
+        Task<Client> LoginAsync(LoginModel login);
     }
 }

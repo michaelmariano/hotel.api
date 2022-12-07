@@ -48,7 +48,7 @@ namespace Application.Classes
             if (room == null)
                 throw new CustomException(HttpStatusCode.UnprocessableEntity, "Room not founded.");
             else if (!room.IsAvaible)
-                throw new CustomException(HttpStatusCode.UnprocessableEntity, $"Room {room.IdRoom} unavaible, please choose other.");
+                throw new CustomException(HttpStatusCode.UnprocessableEntity, $"Room {room.Number} unavaible, please choose other.");
 
             int stayDays = Math.Abs((booking.Checkout - booking.Checkin).Days);
             int advanceDays = Math.Abs((booking.Checkin - DateTime.Now).Days);

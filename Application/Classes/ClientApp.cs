@@ -17,14 +17,14 @@ namespace Application.Classes
             _clientRepository = clientRepository;
         }
 
-        public async Task<int> Insert(Client client)
+        public async Task<int> InsertAsync(Client client)
         {
             client.Password = client.Password.EncryptPasswordWithSHA256();
 
-            return await _clientRepository.Insert(client);
+            return await _clientRepository.InsertAsync(client);
         }
 
-        public async Task<Client> Login(LoginModel login)
+        public async Task<Client> LoginAsync(LoginModel login)
         {
             var client = await _clientRepository.GetByEmailAsync(login.Email);
 

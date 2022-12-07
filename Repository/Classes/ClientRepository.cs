@@ -7,7 +7,7 @@ namespace Repository.Classes
 {
     public class ClientRepository : BaseRepository<Client>, IClientRepository
     {
-        public async Task<int> Insert(Client client)
+        public async Task<int> InsertAsync(Client client)
         {
             _sqlCommand = $"insert into {Table} (fullname, document, phonenumber, email, password) " +
                 $"values (@fullname, @document, @phonenumber, @email, @password) " +

@@ -21,9 +21,9 @@ namespace Hotel.Api.Controllers
         /// </summary>            
         [ProducesResponseType(typeof(int), 201)]
         [HttpPost]
-        public async Task<IActionResult> Insert([FromBody] Client client)
+        public async Task<IActionResult> InsertAsync([FromBody] Client client)
         {
-            return Created("/api/client/login", await _clientApp.Insert(client));
+            return Created("/api/client/login", await _clientApp.InsertAsync(client));
         }
 
         /// <summary>
@@ -31,9 +31,9 @@ namespace Hotel.Api.Controllers
         /// </summary>           
         [ProducesResponseType(typeof(Client), 200)]
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel login)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginModel login)
         {
-            return Ok(await _clientApp.Login(login));
+            return Ok(await _clientApp.LoginAsync(login));
         }
     }
 }
