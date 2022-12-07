@@ -62,7 +62,7 @@ namespace Repository.Abstractions
             return Configuration["ConnectionStrings:MainConnectionWrite"];
         }
 
-        public async Task ExecuteOneRecordAsync(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
+        public async Task WriteJustOneRecordAsync(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             int rows = 0;
 
@@ -78,7 +78,7 @@ namespace Repository.Abstractions
                     }
                     catch (Exception ex)
                     {
-                        //Todo log
+                        throw new Exception(ex.Message);
                     }
                     finally
                     {
@@ -91,26 +91,13 @@ namespace Repository.Abstractions
             }
         }
 
-        public async Task<int> ExecuteAsync(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
+        public async Task<int> WriteAsync(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
         {
-            int result = 0;
-
-            try
-            {
-                using (var db = new NpgsqlConnection(ConnectionWrite))
-                {
-                    result = (await db.ExecuteAsync(sql, param, commandTimeout: commandTimeout, commandType: commandType));
-                }
-            }
-            catch (Exception ex)
-            {
-                //TODO Log
-            }
-
-            return result;
+            using (var db = new NpgsqlConnection(ConnectionWrite))
+                return (await db.QueryFirstAsync<int>(sql, param, commandTimeout: commandTimeout, commandType: commandType));
         }
 
-        public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
+        public async Task<IEnumerable<T>> ReadAsync<T>(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             using (var db = new NpgsqlConnection(ConnectionRead))
                 return (await db.QueryAsync<T>(sql, param, commandTimeout: commandTimeout, commandType: commandType));

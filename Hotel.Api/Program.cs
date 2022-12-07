@@ -14,8 +14,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 #region Depency Injection
-builder.Services.AddTransient<IUserApp, UserApp>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IClientApp, ClientApp>();
+builder.Services.AddTransient<IBookingApp, BookingApp>();
+builder.Services.AddTransient<IRoomApp, RoomApp>();
+
+builder.Services.AddTransient<IClientRepository, ClientRepository>();
+builder.Services.AddTransient<IBookingRepository, BookingRepository>();
+builder.Services.AddTransient<IRoomRepository, RoomRepository>();
 #endregion
 
 var app = builder.Build();

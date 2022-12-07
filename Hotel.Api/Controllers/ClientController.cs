@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces;
 using Domain.Entities;
-using Microsoft.AspNetCore.Http;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.Api.Controllers
@@ -9,16 +9,23 @@ namespace Hotel.Api.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly IUserApp _userApp;
-        public ClientController(IUserApp userApp)
+        private readonly IClientApp _clientApp;
+
+        public ClientController(IClientApp clientApp)
         {
-            _userApp = userApp;
+            _clientApp = clientApp;
         }
 
-        //[HttpGet("get/{id}")]
-        //public async Task<User> GetByIdAsync(int id)
-        //{
-        //    return await _userApp.GetByIdAsync(id);
-        //}
+        [HttpPost]
+        public async Task<ActionResult<int>> Insert([FromBody] Client client)
+        {
+            return Created("/login", await _clientApp.Insert(client));
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<Client>> Login([FromBody] LoginModel login)
+        {
+            return Ok(await _clientApp.Login(login));
+        }
     }
 }
