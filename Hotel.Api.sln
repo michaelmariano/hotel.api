@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Api", "Hotel.Api\Hotel.Api.csproj", "{E629FE2B-5B56-41A5-A989-F600CFEF2F3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Api", "Hotel.Api\Hotel.Api.csproj", "{E629FE2B-5B56-41A5-A989-F600CFEF2F3A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Service", "1 - Service", "{1A318D75-5F36-4F5B-97DB-587AB773D88D}"
 EndProject
@@ -15,13 +15,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Domain", "4 - Domain", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - UnityTests", "5 - UnityTests", "{55758C1B-5AC4-401C-958B-CC11ECA83787}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{23FE065B-1384-47AE-8033-0348A930448A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{23FE065B-1384-47AE-8033-0348A930448A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{6A9F0745-1298-416C-98C9-1B0B29C2C2DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{6A9F0745-1298-416C-98C9-1B0B29C2C2DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{14FC40AB-E7BE-4DEA-AA83-B1D74128430B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{14FC40AB-E7BE-4DEA-AA83-B1D74128430B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Api_Test", "Hotel.Api_Test\Hotel.Api_Test.csproj", "{E6C8BDE5-B7AA-4160-A09B-9ACF91B9736D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Api_Test", "Hotel.Api_Test\Hotel.Api_Test.csproj", "{E6C8BDE5-B7AA-4160-A09B-9ACF91B9736D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - SQL", "6 - SQL", "{4C471854-5C6C-4AA8-AD14-68675058A937}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\micha\OneDrive\Documents\hotelcancun Scripts SQL.sql = C:\Users\micha\OneDrive\Documents\hotelcancun Scripts SQL.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
