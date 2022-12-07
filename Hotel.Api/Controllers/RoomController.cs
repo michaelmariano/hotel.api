@@ -16,33 +16,37 @@ namespace Hotel.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Room?> Get([FromRoute] int id)
+        public async Task<IActionResult> Get([FromRoute] int id)
         {
-            return await _roomApp.GetAsync(id);
+            return Ok(await _roomApp.GetAsync(id));
         }
 
         [HttpGet()]
-        public async Task<List<Room>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return await _roomApp.GetAllAsync();
+            return Ok(await _roomApp.GetAllAsync());
         }
 
         [HttpPost]
-        public async Task<int> Insert([FromBody] Room room)
+        public async Task<IActionResult> Insert([FromBody] Room room)
         {
-            return await _roomApp.InsertAsync(room);
+            return Ok(await _roomApp.InsertAsync(room));
         }
 
         [HttpPut]
-        public async Task Update([FromBody] Room room)
+        public async Task<IActionResult> Update([FromBody] Room room)
         {
             await _roomApp.UpdateAsync(room);
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await _roomApp.DeleteAsync(id);
+
+            return Ok();
         }
     }
 }

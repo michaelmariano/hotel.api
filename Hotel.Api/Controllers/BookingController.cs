@@ -16,27 +16,31 @@ namespace Hotel.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Booking?> Get([FromRoute] int id)
+        public async Task<IActionResult> Get([FromRoute] int id)
         {
-            return await _bookingApp.GetAsync(id);
+            return Ok(await _bookingApp.GetAsync(id));
         }
 
         [HttpPost]
-        public async Task<int> Insert([FromBody] Booking booking)
+        public async Task<IActionResult> Insert([FromBody] Booking booking)
         {
-            return await _bookingApp.InsertAsync(booking);
+            return Created("/api/client/{id}", await _bookingApp.InsertAsync(booking));
         }
 
         [HttpPut]
-        public async Task Update([FromBody] Booking booking)
+        public async Task<IActionResult> Update([FromBody] Booking booking)
         {
             await _bookingApp.UpdateAsync(booking);
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await _bookingApp.DeleteAsync(id);
+
+            return Ok();
         }
     }
 }

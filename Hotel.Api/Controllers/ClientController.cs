@@ -17,13 +17,13 @@ namespace Hotel.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Insert([FromBody] Client client)
+        public async Task<IActionResult> Insert([FromBody] Client client)
         {
-            return Created("/login", await _clientApp.Insert(client));
+            return Created("/api/client/login", await _clientApp.Insert(client));
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<Client>> Login([FromBody] LoginModel login)
+        public async Task<IActionResult> Login([FromBody] LoginModel login)
         {
             return Ok(await _clientApp.Login(login));
         }
