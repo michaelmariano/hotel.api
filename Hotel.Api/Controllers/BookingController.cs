@@ -24,7 +24,7 @@ namespace Hotel.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Insert([FromBody] Booking booking)
         {
-            return Created("/api/client/{id}", await _bookingApp.InsertAsync(booking));
+            return Created("/api/booking/{id}", await _bookingApp.InsertAsync(booking));
         }
 
         [HttpPut]
