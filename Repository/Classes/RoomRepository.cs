@@ -21,7 +21,7 @@ namespace Repository.Classes
             _params.Add("@id", id, DbType.Int32, direction: ParameterDirection.Input);
 
             _sqlCommand = $"select idroom, number, isavaible from {Table} " +
-                          "where idroom = @idroom;";
+                          "where idroom = @id;";
 
             return (await ReadAsync<Room>(_sqlCommand, param: _params, commandType: CommandType.Text))?.FirstOrDefault();
         }

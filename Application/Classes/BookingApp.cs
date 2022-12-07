@@ -9,10 +9,12 @@ namespace Application.Classes
     public class BookingApp : IBookingApp
     {
         private readonly IBookingRepository _bookingRepository;
+        private readonly IRoomApp _roomApp;
 
-        public BookingApp(IBookingRepository bookingRepository)
+        public BookingApp(IBookingRepository bookingRepository, IRoomApp roomApp)
         {
             _bookingRepository = bookingRepository;
+            _roomApp = roomApp;
         }
 
         public async Task DeleteAsync(int id)
@@ -27,21 +29,28 @@ namespace Application.Classes
 
         public async Task<int> InsertAsync(Booking booking)
         {
-            CheckStay(booking);
+            await CheckStay(booking);
 
             return await _bookingRepository.InsertAsync(booking);
         }
 
         public async Task UpdateAsync(Booking booking)
         {
-            CheckStay(booking);
+            await CheckStay(booking);
 
             await _bookingRepository.UpdateAsync(booking);
         }
 
-        private void CheckStay(Booking booking)
+        private async Task CheckStay(Booking booking)
         {
-            int stayDays = Math.Abs((booking.Checkout - booking.Checkin).Days);            
+            var room = await _roomApp.GetAsync(booking.IdRoom);
+
+            if (room == null)
+                throw new CustomException(HttpStatusCode.UnprocessableEntity, "Room not founded.");
+            else if (!room.IsAvaible)
+                throw new CustomException(HttpStatusCode.UnprocessableEntity, $"Room {room.IdRoom} unavaible, please choose other.");
+
+            int stayDays = Math.Abs((booking.Checkout - booking.Checkin).Days);
             int advanceDays = Math.Abs((booking.Checkin - DateTime.Now).Days);
 
             if (booking.Checkin.Date == DateTime.Today)
@@ -50,6 +59,8 @@ namespace Application.Classes
                 throw new CustomException(HttpStatusCode.UnprocessableEntity, "Booking cannot be made more than 30 days in advance.");
             else if (stayDays > 3)
                 throw new CustomException(HttpStatusCode.UnprocessableEntity, "The stay cannot exceed 3 days.");
+            else if(booking.Checkin > booking.Checkout)
+                throw new CustomException(HttpStatusCode.UnprocessableEntity, "Checkin cannot be greater than checkout.");
         }
     }
 }
