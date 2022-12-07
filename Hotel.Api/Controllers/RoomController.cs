@@ -15,24 +15,41 @@ namespace Hotel.Api.Controllers
             _roomApp = roomApp;
         }
 
+        /// <summary>
+        /// Returns a room by id.
+        /// </summary>
+        /// <param name="id">Id of booking.</param>        
+        [ProducesResponseType(typeof(Room), 200)]        
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
             return Ok(await _roomApp.GetAsync(id));
         }
 
-        [HttpGet()]
+        /// <summary>
+        /// Returns all rooms avaibles and unavaibles.
+        /// </summary>               
+        [ProducesResponseType(typeof(List<Room>), 200)]
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _roomApp.GetAllAsync());
         }
 
+        /// <summary>
+        /// Insert a room.
+        /// </summary>             
+        [ProducesResponseType(typeof(int), 201)]
         [HttpPost]
         public async Task<IActionResult> Insert([FromBody] Room room)
         {
             return Ok(await _roomApp.InsertAsync(room));
         }
 
+        /// <summary>
+        /// Update a room.
+        /// </summary>             
+        [ProducesResponseType(typeof(void), 200)]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Room room)
         {
@@ -41,6 +58,11 @@ namespace Hotel.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Update a room.
+        /// </summary>             
+        /// <param name="id">Id of room.</param>     
+        [ProducesResponseType(typeof(void), 200)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

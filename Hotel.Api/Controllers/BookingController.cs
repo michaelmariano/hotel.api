@@ -15,18 +15,31 @@ namespace Hotel.Api.Controllers
             _bookingApp = bookingApp;
         }
 
+        /// <summary>
+        /// Returns a booking by id.
+        /// </summary>
+        /// <param name="id">Id of booking.</param>        
+        [ProducesResponseType(typeof(Booking), 200)]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
             return Ok(await _bookingApp.GetAsync(id));
         }
 
+        /// <summary>
+        /// Insert a booking.
+        /// </summary>             
+        [ProducesResponseType(typeof(int), 201)]
         [HttpPost]
         public async Task<IActionResult> Insert([FromBody] Booking booking)
         {
             return Created("/api/booking/{id}", await _bookingApp.InsertAsync(booking));
         }
 
+        /// <summary>
+        /// Update a booking.
+        /// </summary>             
+        [ProducesResponseType(typeof(void), 200)]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Booking booking)
         {
@@ -35,6 +48,11 @@ namespace Hotel.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete a booking.
+        /// </summary>        
+        /// <param name="id">Id of booking.</param>      
+        [ProducesResponseType(typeof(void), 200)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
